@@ -28,7 +28,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>myapp</string>
-          <string>io.livekit.voiceassistantreactnative</string>
+          		<string>com.hypermindproject.adhd</string>
         </array>
       </dict>
       <dict>

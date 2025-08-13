@@ -5,7 +5,7 @@ node_modules/
 
 # Local Build
 android/
-ios/
+# ios/ - committing for EAS build consistency
 
 # Expo
 .expo/

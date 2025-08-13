@@ -68,7 +68,7 @@
   "private": true,
   "expo": {
     "extra": {
-      "EXPO_PUBLIC_TOKEN_SERVER_URL": "https://hmp-backend-dzp7.onrender.com/token"
+      "EXPO_PUBLIC_TOKEN_SERVER_URL": "https://hmp-backend-jigv.onrender.com/token"
     }
   }
 }

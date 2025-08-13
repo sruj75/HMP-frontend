@@ -36,8 +36,7 @@ target 'voiceassistantreactnative' do
   use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
   use_frameworks! :linkage => ENV['USE_FRAMEWORKS'].to_sym if ENV['USE_FRAMEWORKS']
 
-  # Pin WebRTC-SDK version to match @livekit/react-native-webrtc 125.0.9
-  pod 'WebRTC-SDK', '125.6422.09'
+  # WebRTC-SDK version will be determined by @livekit/react-native-webrtc 137.0.1
 
   use_react_native!(
     :path => config[:reactNativePath],

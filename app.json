@@ -15,7 +15,8 @@
       "infoPlist": {
         "NSMicrophoneUsageDescription": "This app uses the microphone so you can talk to the voice assistant.",
         "NSCameraUsageDescription": "Camera access is used for optional video features.",
-        "NSBluetoothAlwaysUsageDescription": "Bluetooth is used for connecting to audio devices."
+        "NSBluetoothAlwaysUsageDescription": "Bluetooth is used for connecting to audio devices.",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -56,6 +57,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "e7d20d77-29a3-4e25-9017-4d18ff4bcff0"
+      }
     }
   }
 }

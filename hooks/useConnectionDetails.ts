@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react';
 
-// TODO: Add your Sandbox ID here
-const sandboxID = '';
-const tokenEndpoint =
-  'https://cloud-api.livekit.io/api/sandbox/connection-details';
-
-// For use without a token server.
-const hardcodedUrl = '';
-const hardcodedToken = '';
+// Backend token server endpoint (only prod URL; no local fallback)
+const tokenServerUrl = process.env.EXPO_PUBLIC_TOKEN_SERVER_URL;
 
 /**
  * Retrieves a LiveKit token.
@@ -16,31 +10,33 @@ const hardcodedToken = '';
  * When building an app for production, you should use your own token server.
  */
 export function useConnectionDetails(): ConnectionDetails | undefined {
-  const [details, setDetails] = useState<ConnectionDetails | undefined>(() => {
-    if (!sandboxID) {
-      return {
-        url: hardcodedUrl,
-        token: hardcodedToken,
-      };
-    }
-    return undefined;
-  });
+  const [details, setDetails] = useState<ConnectionDetails | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     const fetchToken = async () => {
-      if (!sandboxID) {
-        return;
-      }
-      const response = await fetch(tokenEndpoint, {
-        headers: { 'X-Sandbox-ID': sandboxID },
-      });
-      const json = await response.json();
-
-      if (json.serverUrl && json.participantToken) {
-        setDetails({
-          url: json.serverUrl,
-          token: json.participantToken,
-        });
+      try {
+        if (tokenServerUrl) {
+          const response = await fetch(tokenServerUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({}),
+          });
+          const json = await response.json();
+          // Our backend returns snake_case keys
+          if (json.server_url && json.token) {
+            setDetails({ url: json.server_url, token: json.token });
+            return;
+          }
+          // Also support camelCase just in case
+          if (json.serverUrl && json.participantToken) {
+            setDetails({ url: json.serverUrl, token: json.participantToken });
+            return;
+          }
+        }
+      } catch {
+        // Intentionally no fallback in prod-only configuration
       }
     };
 

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "voice-assistant-react-native",
-    "slug": "voice-assistant-react-native",
+    "name": "hypermindproject",
+    "slug": "hypermindproject",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -11,7 +11,12 @@
     "ios": {
       "supportsTablet": true,
       "bitcode": false,
-      "bundleIdentifier": "io.livekit.voiceassistantreactnative"
+      "bundleIdentifier": "com.hypermindproject.adhd",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "This app uses the microphone so you can talk to the voice assistant.",
+        "NSCameraUsageDescription": "Camera access is used for optional video features.",
+        "NSBluetoothAlwaysUsageDescription": "Bluetooth is used for connecting to audio devices."
+      }
     },
     "android": {
       "adaptiveIcon": {

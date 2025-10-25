@@ -1,5 +1,10 @@
 import { useRouter } from 'expo-router';
 import { StyleSheet, Button, View } from 'react-native';
+/**
+ * Simple interface - Just a centered button
+ * Clear call-to-action - "Start Voice Assistant"
+ * Navigation trigger - Button navigates to ../assistant
+ */
 
 export default function StartScreen() {
   const router = useRouter();

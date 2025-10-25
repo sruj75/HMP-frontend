@@ -20,10 +20,17 @@ import {
   useTrackTranscription,
   useVoiceAssistant,
 } from '@livekit/react-native';
-import { useConnectionDetails } from '@/hooks/useConnectionDetails';
+import { useConnectionDetails } from '../../hooks/useConnectionDetails';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Track } from 'livekit-client';
 import { useRouter } from 'expo-router';
+
+/**
+ * Audio session starts - Prepares device for voice input
+ * Connection established - Uses useConnectionDetails hook to get LiveKit room credentials
+ * LiveKit room joins - Connects to the Livekit room
+ * RoomView renders - The actual voice interface
+ */
 
 export default function AssistantScreen() {
   // Start the audio session first.

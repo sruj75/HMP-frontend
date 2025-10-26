@@ -17,6 +17,7 @@
       }
     },
     "production": {
+      "distribution": "store",
       "ios": { "resourceClass": "m-medium" },
       "env": {
         "EXPO_PUBLIC_TOKEN_SERVER_URL": "https://hmp-backend-jigv.onrender.com/token"

@@ -10,12 +10,6 @@ import 'react-native-reanimated';
 import { useColorScheme } from '../hooks/useColorScheme';
 import { registerGlobals } from '@livekit/react-native';
 
-/**
- * LiveKit setup - Registers global LiveKit components
- * Theme detection - Uses useColorScheme hook to detect light/dark mode
- * Navigation setup - Defines two main routes: (start) and assistant
- * No headers - Clean, full-screen experience
- */
 registerGlobals();
 
 export default function RootLayout() {

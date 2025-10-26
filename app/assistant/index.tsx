@@ -20,16 +20,18 @@ import {
   useTrackTranscription,
   useVoiceAssistant,
 } from '@livekit/react-native';
-import { useConnectionDetails } from '../../hooks/useConnectionDetails';
+import { useTokenRequest } from '../../hooks/useTokenRequest';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Track } from 'livekit-client';
 import { useRouter } from 'expo-router';
 
 /**
  * Audio session starts - Prepares device for voice input
- * Connection established - Uses useConnectionDetails hook to get LiveKit room credentials
+ * Connection established - Uses useTokenRequest hook to get LiveKit room credentials
  * LiveKit room joins - Connects to the Livekit room
  * RoomView renders - The actual voice interface
+ * todo:
+ * 1. wait for credentials before attempting to join the LiveKit room, display a loading indicator while fetching, handle and surface errors (with retry or fallback behavior), and guard the connection logic so it only runs when credentials are successfully retrieved to prevent race conditions or silent failures.
  */
 
 export default function AssistantScreen() {
@@ -45,7 +47,7 @@ export default function AssistantScreen() {
     };
   }, []);
 
-  const connectionDetails = useConnectionDetails();
+  const connectionDetails = useTokenRequest();
 
   return (
     <SafeAreaView>

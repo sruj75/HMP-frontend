@@ -1,0 +1,27 @@
+{
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": { "simulator": false, "resourceClass": "m-medium" },
+      "env": {
+        "EXPO_PUBLIC_BACKEND_URL": "https://hmp-backend-jigv.onrender.com"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "ios": { "resourceClass": "m-medium" },
+      "env": {
+        "EXPO_PUBLIC_BACKEND_URL": "https://hmp-backend-jigv.onrender.com"
+      }
+    },
+    "production": {
+      "distribution": "store",
+      "ios": { "resourceClass": "m-medium" },
+      "env": {
+        "EXPO_PUBLIC_BACKEND_URL": "https://hmp-backend-jigv.onrender.com"
+      }
+    }
+  },
+  "submit": { "production": {} }
+}

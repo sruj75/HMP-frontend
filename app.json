@@ -1,24 +1,33 @@
 {
   "expo": {
-    "name": "voice-assistant-react-native",
-    "slug": "voice-assistant-react-native",
+    "name": "Hypermind",
+    "slug": "hypermindproject",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "Hypermind",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
       "bitcode": false,
-      "bundleIdentifier": "io.livekit.voiceassistantreactnative"
+      "bundleIdentifier": "com.hypermindproject.app",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "This app uses the microphone so you can talk to the voice assistant.",
+        "NSCameraUsageDescription": "Camera access is used for optional video features.",
+        "NSBluetoothAlwaysUsageDescription": "Bluetooth is used for connecting to audio devices.",
+        "ITSAppUsesNonExemptEncryption": true,
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "io.livekit.voiceassistantreactnative",
+      "package": "com.hypermindproject.app",
       "permissions": [
         "android.permission.ACCESS_NETWORK_STATE",
         "android.permission.CAMERA",
@@ -30,11 +39,6 @@
         "android.permission.BLUETOOTH"
       ],
       "softwareKeyboardLayoutMode": "pan"
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
       "expo-router",
@@ -49,11 +53,18 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-font",
-      "expo-web-browser"
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "e7d20d77-29a3-4e25-9017-4d18ff4bcff0"
+      }
     }
   }
 }

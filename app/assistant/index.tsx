@@ -66,16 +66,10 @@ const RoomView = () => {
   const {
     isMicrophoneEnabled,
     isCameraEnabled,
-    isScreenShareEnabled,
     cameraTrack: localCameraTrack,
     localParticipant,
   } = useLocalParticipant();
   const localParticipantIdentity = localParticipant.identity;
-
-  const localScreenShareTrack = useParticipantTracks(
-    [Track.Source.ScreenShare],
-    localParticipantIdentity
-  );
 
   const localVideoTrack =
     localCameraTrack && isCameraEnabled
@@ -84,8 +78,6 @@ const RoomView = () => {
           publication: localCameraTrack,
           source: Track.Source.Camera,
         }
-      : localScreenShareTrack.length > 0 && isScreenShareEnabled
-      ? localScreenShareTrack[0]
       : null;
 
   // Transcriptions
@@ -109,9 +101,6 @@ const RoomView = () => {
   const onCameraClick = useCallback(() => {
     localParticipant.setCameraEnabled(!isCameraEnabled);
   }, [isCameraEnabled, localParticipant]);
-  const onScreenShareClick = useCallback(() => {
-    localParticipant.setScreenShareEnabled(!isScreenShareEnabled);
-  }, [isScreenShareEnabled, localParticipant]);
   const onChatClick = useCallback(() => {
     setChatEnabled(!isChatEnabled);
   }, [isChatEnabled, setChatEnabled]);
@@ -128,7 +117,7 @@ const RoomView = () => {
   );
   const agentVisualizationPosition = useAgentVisualizationPosition(
     isChatEnabled,
-    isCameraEnabled || isScreenShareEnabled
+    isCameraEnabled
   );
   const localVideoPosition = useLocalVideoPosition(isChatEnabled, {
     width: containerWidth,
@@ -192,12 +181,10 @@ const RoomView = () => {
         options={{
           isMicEnabled: isMicrophoneEnabled,
           isCameraEnabled,
-          isScreenShareEnabled,
           isChatEnabled,
           onMicClick,
           onCameraClick,
           onChatClick,
-          onScreenShareClick,
           onExitClick,
         }}
       />

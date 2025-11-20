@@ -1,5 +1,5 @@
 {
-  "name": "voice-assistant-react-native",
+  "name": "Hypermind",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
@@ -7,7 +7,6 @@
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web",
     "test": "jest --watchAll",
     "ci:test": "jest",
     "lint": "expo lint",
@@ -19,7 +18,6 @@
   "dependencies": {
     "@config-plugins/react-native-webrtc": "13.0.0",
     "@expo/vector-icons": "^15.0.3",
-    "@livekit/components-react": "^2.8.1",
     "@livekit/react-native": "^2.9.0",
     "@livekit/react-native-expo-plugin": "^1.0.1",
     "@livekit/react-native-webrtc": "^137.0.0",
@@ -40,13 +38,11 @@
     "expo-web-browser": "~15.0.9",
     "livekit-client": "^2.11.2",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
     "react-native": "0.81.5",
     "react-native-gesture-handler": "~2.28.0",
     "react-native-reanimated": "~4.1.1",
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
-    "react-native-web": "^0.21.0",
     "react-native-webview": "13.15.0",
     "typescript": "5.0.4"
   },
@@ -57,6 +53,7 @@
     "eslint": "^8.57.0",
     "eslint-config-expo": "~10.0.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-ft-flow": "^2.0.3",
     "eslint-plugin-prettier": "^4.2.1",
     "jest": "^29.2.1",

@@ -1,5 +1,5 @@
 import { Transcription } from '@/hooks/useDataStreamTranscriptions';
-import { useLocalParticipant } from '@livekit/components-react';
+import { useLocalParticipant } from '@livekit/react-native';
 import { useCallback } from 'react';
 import {
   ListRenderItemInfo,

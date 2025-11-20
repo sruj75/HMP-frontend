@@ -1,19 +1,8 @@
 import { useEffect, useState } from 'react';
 
-// TODO: Add your Sandbox ID here
-const sandboxID = '';
-const tokenEndpoint =
-  'https://cloud-api.livekit.io/api/sandbox/connection-details';
-
-// For use without a token server.
-const hardcodedUrl = '';
-const hardcodedToken = '';
-
 /**
- * Retrieves a LiveKit token.
- *
- * Currently configured to use LiveKit's Sandbox token server.
- * When building an app for production, you should use your own token server.
+ * Retrieves a LiveKit token from the backend token server.
+ * Expects POST /token to return { server_url, token }.
  */
 export function useConnectionDetails(): ConnectionDetails | undefined {
   const [details, setDetails] = useState<ConnectionDetails | undefined>(() => {
@@ -21,41 +10,43 @@ export function useConnectionDetails(): ConnectionDetails | undefined {
   });
 
   useEffect(() => {
-    fetchToken().then(details => {
-      setDetails(details);
+    fetchToken().then((newDetails) => {
+      setDetails(newDetails);
     });
   }, []);
 
   return details;
 }
 
-export async function fetchToken() : Promise<ConnectionDetails | undefined> {
-
-    if (!sandboxID) {
+export async function fetchToken(): Promise<ConnectionDetails | undefined> {
+  const baseUrl = process.env.EXPO_PUBLIC_BACKEND_URL;
+  console.log("Fetching token from:", baseUrl); // <--- Log the URL
+  if (!baseUrl) {
+    console.error("Base URL is missing!");
+    return undefined;
+  }
+  try {
+    const response = await fetch(`${baseUrl}/token`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    });
+    if (!response.ok) {
+      console.error("Response not OK:", response.status);
+      return undefined;
+    }
+    const json = await response.json();
+    if (json?.server_url && json?.token) {
       return {
-        url: hardcodedUrl,
-        token: hardcodedToken,
+        url: json.server_url,
+        token: json.token,
       };
     }
-    const fetchToken = async () => {
-      if (!sandboxID) {
-        return undefined;
-      }
-      const response = await fetch(tokenEndpoint, {
-        headers: { 'X-Sandbox-ID': sandboxID },
-      });
-      const json = await response.json();
-
-      if (json.serverUrl && json.participantToken) {
-        return {
-          url: json.serverUrl,
-          token: json.participantToken,
-        };
-      } else {
-        return undefined;
-      }
-    };
-    return fetchToken();
+    return undefined;
+  } catch (e) {
+    console.error("Fetch error:", e); // <--- Log the actual error
+    return undefined;
+  }
 }
 
 export type ConnectionDetails = {

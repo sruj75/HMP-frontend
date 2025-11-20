@@ -1,4 +1,4 @@
-import { TrackReference, useLocalParticipant } from '@livekit/components-react';
+import { TrackReference, useLocalParticipant } from '@livekit/react-native';
 import { BarVisualizer } from '@livekit/react-native';
 import { useEffect, useState } from 'react';
 import {
@@ -20,8 +20,6 @@ type ControlBarOptions = {
   onMicClick: () => void;
   isCameraEnabled: boolean;
   onCameraClick: () => void;
-  isScreenShareEnabled: boolean;
-  onScreenShareClick: () => void;
   isChatEnabled: boolean;
   onChatClick: () => void;
   onExitClick: () => void;
@@ -52,9 +50,6 @@ export default function ControlBar({ style = {}, options }: ControlBarProps) {
   let cameraImage = options.isCameraEnabled
     ? require('@/assets/images/videocam_24dp.png')
     : require('@/assets/images/videocam_off_24dp.png');
-  let screenShareImage = options.isScreenShareEnabled
-    ? require('@/assets/images/present_to_all_24dp.png')
-    : require('@/assets/images/present_to_all_off_24dp.png');
   let chatImage = options.isChatEnabled
     ? require('@/assets/images/chat_24dp.png')
     : require('@/assets/images/chat_off_24dp.png');
@@ -92,16 +87,6 @@ export default function ControlBar({ style = {}, options }: ControlBarProps) {
         onPress={() => options.onCameraClick()}
       >
         <Image style={styles.icon} source={cameraImage} />
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.button,
-          options.isScreenShareEnabled ? styles.enabledButton : undefined,
-        ]}
-        activeOpacity={0.7}
-        onPress={() => options.onScreenShareClick()}
-      >
-        <Image style={styles.icon} source={screenShareImage} />
       </TouchableOpacity>
       <TouchableOpacity
         style={[
